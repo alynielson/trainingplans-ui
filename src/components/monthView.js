@@ -76,26 +76,15 @@ const getMonthLayout = (month, year, desiredFirstDayOfWeek) => {
     while (daysAdded < totalDays) {
         let week = [];
         if (daysAdded === 0) {
-            var blankDays = 0;
-            while (blankDays < firstDayFixed) {
-                week[blankDays] = 0;
-                blankDays++;
-            }
-            week[firstDayFixed] = 1;
-            daysAdded++;
-            if (firstDayFixed === 6) {
-                calendar.push(week);
-                continue;
+            while (week.length < firstDayFixed) {
+                week.push(0)
             }
         }
-        let weekIndex = daysAdded === 1 && firstDayFixed < 6 ? firstDayFixed + 1 : 0;
-        while (weekIndex < 7) {
-            week[weekIndex] = daysAdded + 1;
-            daysAdded++;
+        while (week.length < 7) {
+            week.push(++daysAdded);
             if (daysAdded === totalDays) {
                 break;
             }
-            weekIndex++;
         }
         calendar.push(week);
     }
