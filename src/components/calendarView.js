@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import MonthView from "./monthView";
-import MonthViewHeader from "./monthViewHeader";
+import MonthViewHeader from './monthViewHeader'
 import { getCalendarViewState } from 'app/selectors';
 import Container from 'react-bulma-components/lib/components/container';
 import { increaseMonthViewing, decreaseMonthViewing } from 'app/actions';

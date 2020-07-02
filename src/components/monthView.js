@@ -3,6 +3,8 @@ import Table from 'react-bulma-components/lib/components/table';
 import { connect } from "react-redux";
 import { getCalendarViewState, getUserDefaultsState } from 'app/selectors';
 import { weekDays } from '../constants';
+import DayInMonth from './dayInMonth';
+import './monthView.css'
 
 const MonthView = (props) => {
   const month = props.calendarView.month;
@@ -18,9 +20,9 @@ const MonthView = (props) => {
             <tbody>
                 {getMonthLayout(month, year, props.firstDayOfWeek).map((week, weekIndex) => {
                     return (
-                        <tr key={weekIndex}>
+                        <tr className="week" key={weekIndex}>
                             {week.map((day, dayIndex) => {
-                                return (<td key={dayIndex}>{day === 0 ? null : day}</td>);
+                                return (<DayInMonth day={day} key={dayIndex}/>);
                             })}
                         </tr>
                     );
@@ -69,8 +71,7 @@ const getFirstDayOfMonth = (month, year) => new Date(year, month, 1).getDay();
 
 const getMonthLayout = (month, year, desiredFirstDayOfWeek) => {
     var totalDays = getTotalDaysInMonth(month, year);
-    var firstDay = getFirstDayOfMonth(month, year);
-    var firstDayFixed = getIndexAtShiftedDay(firstDay, desiredFirstDayOfWeek);
+    var firstDayFixed = getIndexAtShiftedDay(getFirstDayOfMonth(month, year), desiredFirstDayOfWeek);
     var daysAdded = 0;
     var calendar = [];
     while (daysAdded < totalDays) {

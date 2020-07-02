@@ -1,15 +1,22 @@
 import { INCREASE_MONTH_VIEWING, DECREASE_MONTH_VIEWING } from "../actionTypes";
 import moment from 'moment';
+import { workouts } from "hypotheticalData";
 
+const initialDateViewing = new moment();
 const initialState = {
-  dateViewing: moment({year: 2020, month: 5, day: 1}),
-  month: moment({year: 2020, month: 5, day: 1}).month(),
-  year: moment({year: 2020, month: 5, day: 1}).year()
+  dateViewing: initialDateViewing,
+  month: initialDateViewing.month(),
+  year: initialDateViewing.year(),
+  options: {
+    workoutCalendar: "planOnly",
+    workoutTypes: ["Bike", "Swim", "Run"],
+    granularity: "all"
+  },
+  workouts: workouts
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    
     case INCREASE_MONTH_VIEWING: {
       let month = state.month + 1;
       let year = state.year;
