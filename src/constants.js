@@ -23,6 +23,12 @@ export const months = [
     "December"
 ];
 
+export const allActivityTypes = [
+    "Run",
+    "Bike",
+    "Swim"
+];
+
 export const workoutCalendarOptionTypes = [
     {
         id: 1,

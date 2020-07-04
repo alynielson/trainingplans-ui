@@ -12,7 +12,7 @@ const initialState = {
   year: initialDateViewing.year(),
   options: {
     workoutCalendar: "planOnly",
-    workoutTypes: ["Bike", "Swim", "Run"]
+    activityTypes: ["Bike", "Swim", "Run"]
   },
   workouts: workouts
 };
