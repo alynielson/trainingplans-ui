@@ -1,7 +1,6 @@
 import { Checkbox } from 'react-bulma-components/lib/components/form';
 import React from 'react';
-// import Dropdown from 'react-bulma-components/lib/components/dropdown';
-import '../node_modules/bulma/sass/components/dropdown.sass';
+import Dropdown from 'react-bulma-components/lib/components/dropdown';
 
 const CheckboxDropdown = (props) => {
     return (
