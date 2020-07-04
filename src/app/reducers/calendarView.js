@@ -1,4 +1,7 @@
-import { INCREASE_MONTH_VIEWING, DECREASE_MONTH_VIEWING } from "../actionTypes";
+import { 
+  INCREASE_MONTH_VIEWING, 
+  DECREASE_MONTH_VIEWING, 
+  CHANGE_WORKOUT_CALENDAR_VIEW } from "../actionTypes";
 import moment from 'moment';
 import { workouts } from "hypotheticalData";
 
@@ -33,6 +36,15 @@ export default function(state = initialState, action) {
         year--;
       }
       return createMonthYearState(state, month, year);
+    }
+    case CHANGE_WORKOUT_CALENDAR_VIEW: {
+      return {
+        ...state,
+        options: {
+          ...state.options,
+          workoutCalendar: action.payload,
+        }
+      };
     }
     default:
       return state;

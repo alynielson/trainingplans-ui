@@ -11,10 +11,6 @@
     align-items: center; 
 }
 
-.checkbox {
-    line-height: 0.2;
-}
-
 div.title#monthViewHeader {
     margin-block-end: 0em;
     display: flex;
@@ -26,4 +22,8 @@ div.title#monthViewHeader {
     width: 160px;
     display: inline-block;
     text-align: center;
+}
+
+.button {
+    border: none;
 }

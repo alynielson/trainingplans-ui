@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from 'react-bulma-components/lib/components/table';
 import { connect } from "react-redux";
-import { getCalendarViewState, getUserDefaultsState } from 'app/selectors';
+import { getUserDefaultsState } from 'app/selectors';
 import { weekDays } from '../constants';
 import DayInMonth from './dayInMonth';
 import './monthView.css'
@@ -58,10 +58,8 @@ const getIndexAtShiftedDay = (day, desiredFirstDayOfWeek) => {
 }
 
 const mapStateToProps = (state) => {
-    const calendarView = getCalendarViewState(state);
     const userDefaults = getUserDefaultsState(state); 
     return { 
-        calendarView,  
         firstDayOfWeek: userDefaults.firstDayOfWeek
     };
 }

@@ -2,3 +2,8 @@ table {
     height: 80vh;
 }
 
+div.container.is-fluid {
+    max-width: 95%;
+    padding-left: 0px;
+    padding-right: 0px;
+}

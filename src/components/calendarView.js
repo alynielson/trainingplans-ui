@@ -2,34 +2,39 @@ import React from 'react';
 import { connect } from "react-redux";
 import MonthView from "./monthView";
 import MonthViewHeader from './monthViewHeader'
-import { getCalendarViewState } from 'app/selectors';
 import Container from 'react-bulma-components/lib/components/container';
-import { increaseMonthViewing, decreaseMonthViewing } from 'app/actions';
+import { increaseMonthViewing, decreaseMonthViewing, changeWorkoutCalendarView } from 'app/actions';
 import './monthView.css';
 
-const CalendarView = ({calendarView, increaseMonthViewing, decreaseMonthViewing}) => {
+const CalendarView = ({calendarView, increaseMonthViewing, decreaseMonthViewing, changeWorkoutCalendarView}) => {
     return (
         <div>
             <Container fluid>
                 <MonthViewHeader
-                    month={calendarView.month} 
-                    year={calendarView.year}
+                    calendarView={calendarView}
                     incrementMonth={increaseMonthViewing}
                     decrementMonth={decreaseMonthViewing}
+                    changeWorkoutCalendarView={changeWorkoutCalendarView}
                     />
-                <MonthView />
+                <MonthView 
+                    calendarView={calendarView}
+                    />
             </Container>
         </div>
     );
 }
 
 const mapStateToProps = (state) => {
-    const calendarView = getCalendarViewState(state);
-    return { 
+    return {
+        calendarView: state.calendarView, 
         increaseMonthViewing,
         decreaseMonthViewing,
-        calendarView  
+        changeWorkoutCalendarView 
     };
 }
 
-export default connect(mapStateToProps, { increaseMonthViewing, decreaseMonthViewing })(CalendarView);
+export default connect(mapStateToProps, 
+    { increaseMonthViewing, 
+        decreaseMonthViewing, 
+        changeWorkoutCalendarView 
+    })(CalendarView);

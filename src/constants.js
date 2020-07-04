@@ -22,3 +22,21 @@ export const months = [
     "November",
     "December"
 ];
+
+export const workoutCalendarOptionTypes = [
+    {
+        id: 1,
+        value: "planOnly",
+        text: "Plan"
+    },
+    {
+        id: 2,
+        value: "completedOnly",
+        text: "Completed"
+    },
+    {
+        id: 3,
+        value: "comparison",
+        text: "Comparison"
+    }
+];
