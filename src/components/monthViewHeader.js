@@ -46,7 +46,11 @@ const MonthViewHeader = (props) => {
                         )
                     })}
                 </Dropdown>
-                <ActivityDropdown activityTypes={viewOptions.activityTypes}/>
+                <ActivityDropdown 
+                    activityTypes={viewOptions.activityTypes}
+                    addActivityType={props.addActivityType}
+                    removeActivityType={props.removeActivityType}
+                    />
             </div>
         </div>
     );

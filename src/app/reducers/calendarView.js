@@ -1,7 +1,9 @@
 import { 
   INCREASE_MONTH_VIEWING, 
   DECREASE_MONTH_VIEWING, 
-  CHANGE_WORKOUT_CALENDAR_VIEW } from "../actionTypes";
+  CHANGE_WORKOUT_CALENDAR_VIEW,
+  ADD_ACTIVITY_TYPE,
+  REMOVE_ACTIVITY_TYPE } from "../actionTypes";
 import moment from 'moment';
 import { workouts } from "hypotheticalData";
 
@@ -12,7 +14,7 @@ const initialState = {
   year: initialDateViewing.year(),
   options: {
     workoutCalendar: "planOnly",
-    activityTypes: ["Run", "Lift"]
+    activityTypes: ["Run"]
   },
   workouts: workouts
 };
@@ -45,6 +47,27 @@ export default function(state = initialState, action) {
           workoutCalendar: action.payload,
         }
       };
+    }
+    case ADD_ACTIVITY_TYPE: {
+      let currentOptions = state.options.activityTypes;
+      currentOptions.push(action.payload);
+      return {
+        ...state,
+        options: {
+          ...state.options,
+          activityTypes: currentOptions
+        }
+      }
+    }
+    case REMOVE_ACTIVITY_TYPE: {
+      let currentOptions = state.options.activityTypes.filter(x => x !== action.payload);
+      return {
+        ...state,
+        options: {
+          ...state.options,
+          activityTypes: currentOptions
+        }
+      }
     }
     default:
       return state;

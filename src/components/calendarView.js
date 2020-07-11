@@ -3,10 +3,19 @@ import { connect } from "react-redux";
 import MonthView from "./monthView";
 import MonthViewHeader from './monthViewHeader'
 import Container from 'react-bulma-components/lib/components/container';
-import { increaseMonthViewing, decreaseMonthViewing, changeWorkoutCalendarView } from 'app/actions';
+import { increaseMonthViewing, 
+    decreaseMonthViewing, 
+    changeWorkoutCalendarView, 
+    addActivityType,
+    removeActivityType } from 'app/actions';
 import './monthView.css';
 
-const CalendarView = ({calendarView, increaseMonthViewing, decreaseMonthViewing, changeWorkoutCalendarView}) => {
+const CalendarView = ({calendarView,
+    increaseMonthViewing, 
+    decreaseMonthViewing, 
+    changeWorkoutCalendarView,
+    addActivityType,
+    removeActivityType}) => {
     return (
         <div>
             <Container fluid>
@@ -15,6 +24,8 @@ const CalendarView = ({calendarView, increaseMonthViewing, decreaseMonthViewing,
                     incrementMonth={increaseMonthViewing}
                     decrementMonth={decreaseMonthViewing}
                     changeWorkoutCalendarView={changeWorkoutCalendarView}
+                    addActivityType={addActivityType}
+                    removeActivityType={removeActivityType}
                     />
                 <MonthView 
                     calendarView={calendarView}
@@ -26,15 +37,19 @@ const CalendarView = ({calendarView, increaseMonthViewing, decreaseMonthViewing,
 
 const mapStateToProps = (state) => {
     return {
-        calendarView: state.calendarView, 
+        calendarView: state.calendarView,
         increaseMonthViewing,
         decreaseMonthViewing,
-        changeWorkoutCalendarView 
+        changeWorkoutCalendarView ,
+        addActivityType,
+        removeActivityType
     };
 }
 
 export default connect(mapStateToProps, 
     { increaseMonthViewing, 
         decreaseMonthViewing, 
-        changeWorkoutCalendarView 
+        changeWorkoutCalendarView,
+        addActivityType,
+        removeActivityType
     })(CalendarView);

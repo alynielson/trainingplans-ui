@@ -1,6 +1,7 @@
 
 const initialState = {
   firstDayOfWeek: 1,
+  mainActivityTypes: ["Run", "Bike"]
 };
 
 export default function(state = initialState, action) {
