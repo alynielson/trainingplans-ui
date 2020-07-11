@@ -31,6 +31,12 @@ export const allActivityTypes = [
     "Row"
 ];
 
+export const colors = [
+    "primary",
+    "success",
+    "danger"
+]
+
 export const workoutCalendarOptionTypes = [
     {
         id: 1,

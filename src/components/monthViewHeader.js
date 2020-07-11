@@ -7,7 +7,7 @@ import arrowrightthick from '../icons/arrow-right-thick.png';
 import { months, workoutCalendarOptionTypes } from '../constants';
 import './monthViewHeader.css';
 import Dropdown from 'react-bulma-components/lib/components/dropdown';
-import ActivityDropdown from './activityDropdown';
+import ActivityHeader from './activityDropdown';
 
 const MonthViewHeader = (props) => {
     const month = props.calendarView.month;
@@ -46,8 +46,9 @@ const MonthViewHeader = (props) => {
                         )
                     })}
                 </Dropdown>
-                <ActivityDropdown 
+                <ActivityHeader 
                     activityTypes={viewOptions.activityTypes}
+                    singleSelectedActivity={viewOptions.singleSelectedActivity}
                     addActivityType={props.addActivityType}
                     removeActivityType={props.removeActivityType}
                     />

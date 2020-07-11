@@ -14,7 +14,8 @@ const initialState = {
   year: initialDateViewing.year(),
   options: {
     workoutCalendar: "planOnly",
-    activityTypes: ["Run"]
+    activityTypes: ["Run"],
+    singleSelectedActivity: "Run"
   },
   workouts: workouts
 };
