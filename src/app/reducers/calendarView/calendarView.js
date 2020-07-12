@@ -5,7 +5,7 @@ import {
   ADD_ACTIVITY_TYPE,
   REMOVE_ACTIVITY_TYPE,
   SELECT_MULTI_ACTIVITY,
-  SELECT_SINGLE_ACTIVITY_DRILLDOWN } from "../actionTypes";
+  SELECT_SINGLE_ACTIVITY_DRILLDOWN } from "./actionTypes";
 import moment from 'moment';
 import { workouts } from "hypotheticalData";
 

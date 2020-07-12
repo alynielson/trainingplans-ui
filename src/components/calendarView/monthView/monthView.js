@@ -2,9 +2,9 @@ import React from 'react';
 import Table from 'react-bulma-components/lib/components/table';
 import { connect } from "react-redux";
 import { getUserDefaultsState } from 'app/selectors';
-import { weekDays } from '../constants';
-import DayInMonth from './dayInMonth';
-import './monthView.css'
+import { weekDays } from '../../../constants';
+import DayInMonth from '../dayInMonth/dayInMonth';
+import '../calendarView.css'
 
 const MonthView = (props) => {
   const month = props.calendarView.month;

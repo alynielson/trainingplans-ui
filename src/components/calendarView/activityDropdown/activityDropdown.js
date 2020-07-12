@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-bulma-components/lib/components/dropdown';
-import { allActivityTypes, colors } from '../constants';
+import { allActivityTypes, colors } from '../../../constants';
 import Tag from 'react-bulma-components/lib/components/tag';
 import MoreActivitiesDropdown from './moreActivitiesDropdown';
 import './activityDropdown.css';

@@ -2,12 +2,12 @@ import React from 'react';
 import Icon from 'react-bulma-components/lib/components/icon';
 import 'react-bulma-components/lib/components/heading';
 import Button from 'react-bulma-components/lib/components/button';
-import arrowleftthick from '../icons/arrow-left-thick.png';
-import arrowrightthick from '../icons/arrow-right-thick.png';
-import { months, workoutCalendarOptionTypes } from '../constants';
+import arrowleftthick from  '../../../icons/arrow-left-thick.png';
+import arrowrightthick from '../../../icons/arrow-right-thick.png';
+import { months, workoutCalendarOptionTypes } from '../../../constants';
 import './monthViewHeader.css';
 import Dropdown from 'react-bulma-components/lib/components/dropdown';
-import ActivityHeader from './activityDropdown';
+import ActivityHeader from '../activityDropdown/activityDropdown';
 
 const MonthViewHeader = (props) => {
     const month = props.calendarView.month;

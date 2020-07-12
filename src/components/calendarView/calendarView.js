@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
-import MonthView from "./monthView";
-import MonthViewHeader from './monthViewHeader'
+import MonthView from "./monthView/monthView";
+import MonthViewHeader from './monthViewHeader/monthViewHeader'
 import Container from 'react-bulma-components/lib/components/container';
 import { increaseMonthViewing, 
     decreaseMonthViewing, 
@@ -9,8 +9,8 @@ import { increaseMonthViewing,
     addActivityType,
     removeActivityType,
     selectMultiActivity,
-    selectSingleActivityDrilldown } from 'app/actions';
-import './monthView.css';
+    selectSingleActivityDrilldown } from 'app/reducers/calendarView/actions';
+import './calendarView.css';
 
 const CalendarView = ({calendarView,
     increaseMonthViewing, 
