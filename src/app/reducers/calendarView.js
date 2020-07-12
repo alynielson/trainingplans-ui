@@ -3,7 +3,9 @@ import {
   DECREASE_MONTH_VIEWING, 
   CHANGE_WORKOUT_CALENDAR_VIEW,
   ADD_ACTIVITY_TYPE,
-  REMOVE_ACTIVITY_TYPE } from "../actionTypes";
+  REMOVE_ACTIVITY_TYPE,
+  SELECT_MULTI_ACTIVITY,
+  SELECT_SINGLE_ACTIVITY_DRILLDOWN } from "../actionTypes";
 import moment from 'moment';
 import { workouts } from "hypotheticalData";
 
@@ -15,7 +17,7 @@ const initialState = {
   options: {
     workoutCalendar: "planOnly",
     activityTypes: ["Run"],
-    singleSelectedActivity: "Run"
+    // singleSelectedActivity: "Run"
   },
   workouts: workouts
 };
@@ -67,6 +69,24 @@ export default function(state = initialState, action) {
         options: {
           ...state.options,
           activityTypes: currentOptions
+        }
+      }
+    }
+    case SELECT_MULTI_ACTIVITY: {
+      return {
+        ...state,
+        options: {
+          ...state.options,
+          singleSelectedActivity: null
+        }
+      }
+    }
+    case SELECT_SINGLE_ACTIVITY_DRILLDOWN: {
+      return {
+        ...state,
+        options: {
+          ...state.options,
+          singleSelectedActivity: action.payload
         }
       }
     }

@@ -51,6 +51,8 @@ const MonthViewHeader = (props) => {
                     singleSelectedActivity={viewOptions.singleSelectedActivity}
                     addActivityType={props.addActivityType}
                     removeActivityType={props.removeActivityType}
+                    selectSingleActivityDrilldown={props.selectSingleActivityDrilldown}
+                    selectMultiActivity={props.selectMultiActivity}
                     />
             </div>
         </div>

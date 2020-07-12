@@ -7,7 +7,9 @@ import { increaseMonthViewing,
     decreaseMonthViewing, 
     changeWorkoutCalendarView, 
     addActivityType,
-    removeActivityType } from 'app/actions';
+    removeActivityType,
+    selectMultiActivity,
+    selectSingleActivityDrilldown } from 'app/actions';
 import './monthView.css';
 
 const CalendarView = ({calendarView,
@@ -15,7 +17,9 @@ const CalendarView = ({calendarView,
     decreaseMonthViewing, 
     changeWorkoutCalendarView,
     addActivityType,
-    removeActivityType}) => {
+    removeActivityType,
+    selectMultiActivity,
+    selectSingleActivityDrilldown}) => {
     return (
         <div>
             <Container fluid>
@@ -26,6 +30,8 @@ const CalendarView = ({calendarView,
                     changeWorkoutCalendarView={changeWorkoutCalendarView}
                     addActivityType={addActivityType}
                     removeActivityType={removeActivityType}
+                    selectMultiActivity={selectMultiActivity}
+                    selectSingleActivityDrilldown={selectSingleActivityDrilldown}
                     />
                 <MonthView 
                     calendarView={calendarView}
@@ -42,7 +48,9 @@ const mapStateToProps = (state) => {
         decreaseMonthViewing,
         changeWorkoutCalendarView ,
         addActivityType,
-        removeActivityType
+        removeActivityType,
+        selectMultiActivity,
+        selectSingleActivityDrilldown
     };
 }
 
@@ -51,5 +59,7 @@ export default connect(mapStateToProps,
         decreaseMonthViewing, 
         changeWorkoutCalendarView,
         addActivityType,
-        removeActivityType
+        removeActivityType,
+        selectMultiActivity,
+        selectSingleActivityDrilldown
     })(CalendarView);

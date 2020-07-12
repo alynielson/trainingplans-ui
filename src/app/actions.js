@@ -3,7 +3,9 @@ import {
   DECREASE_MONTH_VIEWING, 
   CHANGE_WORKOUT_CALENDAR_VIEW,
   ADD_ACTIVITY_TYPE, 
-  REMOVE_ACTIVITY_TYPE} from "./actionTypes";
+  REMOVE_ACTIVITY_TYPE,
+  SELECT_SINGLE_ACTIVITY_DRILLDOWN,
+  SELECT_MULTI_ACTIVITY } from "./actionTypes";
 
 export const increaseMonthViewing = () => ({
   type: INCREASE_MONTH_VIEWING
@@ -26,4 +28,13 @@ export const addActivityType = (activityType) => ({
 export const removeActivityType = (activityType) => ({
   type: REMOVE_ACTIVITY_TYPE,
   payload: activityType
+});
+
+export const selectSingleActivityDrilldown = (activityType) => ({
+  type: SELECT_SINGLE_ACTIVITY_DRILLDOWN,
+  payload: activityType
+});
+
+export const selectMultiActivity = () => ({
+  type: SELECT_MULTI_ACTIVITY
 });
