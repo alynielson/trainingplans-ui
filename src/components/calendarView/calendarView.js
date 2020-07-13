@@ -14,6 +14,7 @@ import './calendarView.css';
 import { selectMonthViewWorkouts } from 'app/selectors';
 
 const CalendarView = ({calendarView,
+    workouts,
     increaseMonthViewing, 
     decreaseMonthViewing, 
     changeWorkoutCalendarView,
@@ -35,6 +36,7 @@ const CalendarView = ({calendarView,
                     selectSingleActivityDrilldown={selectSingleActivityDrilldown}
                     />
                 <MonthView 
+                    workouts={workouts}
                     calendarView={calendarView}
                     />
             </Container>

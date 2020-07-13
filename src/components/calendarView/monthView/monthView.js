@@ -9,7 +9,6 @@ import '../calendarView.css'
 const MonthView = (props) => {
   const month = props.calendarView.month;
   const year = props.calendarView.year;
-  const workouts = props.calendarView.workouts;
   return (
     <div>
         <Table>
@@ -23,7 +22,12 @@ const MonthView = (props) => {
                     return (
                         <tr className="week" key={weekIndex}>
                             {week.map((day, dayIndex) => {
-                                return (<DayInMonth day={day} key={dayIndex}/>);
+                                return (<DayInMonth 
+                                    day={day} 
+                                    key={dayIndex} 
+                                    workouts={day === 0 
+                                        ? null : getWorkoutsForDay(day, month, year, props.workouts)}
+                                    />);
                             })}
                         </tr>
                     );
@@ -32,6 +36,14 @@ const MonthView = (props) => {
         </Table>
     </div>
   );
+}
+
+const formatDateString = (value) => value < 10 ? `0${value}` : value;
+
+const getWorkoutsForDay = (day, month, year, workouts) => {
+    const monthFormatted = formatDateString(month + 1);
+    const dayFormatted = formatDateString(day);
+    return workouts.filter(x => x.scheduledDate === `${monthFormatted}/${dayFormatted}/${year}`)
 }
 
 const mapWeekDayOrder = (firstDayOfWeek) => {
