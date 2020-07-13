@@ -9,6 +9,7 @@ import '../calendarView.css'
 const MonthView = (props) => {
   const month = props.calendarView.month;
   const year = props.calendarView.year;
+  const workouts = props.calendarView.workouts;
   return (
     <div>
         <Table>

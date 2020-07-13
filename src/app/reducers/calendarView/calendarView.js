@@ -7,7 +7,7 @@ import {
   SELECT_MULTI_ACTIVITY,
   SELECT_SINGLE_ACTIVITY_DRILLDOWN } from "./actionTypes";
 import moment from 'moment';
-import { workouts } from "hypotheticalData";
+import { plannedWorkouts } from "hypotheticalData";
 
 const initialDateViewing = new moment();
 const initialState = {
@@ -19,7 +19,9 @@ const initialState = {
     activityTypes: ["Run"],
     // singleSelectedActivity: "Run"
   },
-  workouts: workouts
+  workouts: {
+    planned: plannedWorkouts
+  }
 };
 
 export default function(state = initialState, action) {

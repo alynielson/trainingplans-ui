@@ -1,4 +1,4 @@
-export const workouts = [
+export const plannedWorkouts = [
     {
         id: 1,
         name: "Easy run",

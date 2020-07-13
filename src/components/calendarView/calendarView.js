@@ -11,6 +11,7 @@ import { increaseMonthViewing,
     selectMultiActivity,
     selectSingleActivityDrilldown } from 'app/reducers/calendarView/actions';
 import './calendarView.css';
+import { selectMonthViewWorkouts } from 'app/selectors';
 
 const CalendarView = ({calendarView,
     increaseMonthViewing, 
@@ -44,6 +45,7 @@ const CalendarView = ({calendarView,
 const mapStateToProps = (state) => {
     return {
         calendarView: state.calendarView,
+        workouts: selectMonthViewWorkouts(state),
         increaseMonthViewing,
         decreaseMonthViewing,
         changeWorkoutCalendarView ,
