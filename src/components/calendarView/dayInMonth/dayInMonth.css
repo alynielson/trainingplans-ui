@@ -7,8 +7,10 @@ td {
 }
 ul {
     list-style: none;
-    display: inline;
+    display: contents;
 }
 
-.cell-contents {
+.tag.activity {
+    display: list-item;
+    height: 1.5em;
 }

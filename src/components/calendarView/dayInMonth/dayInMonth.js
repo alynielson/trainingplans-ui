@@ -1,5 +1,6 @@
 import React from 'react';
 import './dayInMonth.css';
+import Tag from 'react-bulma-components/lib/components/tag';
 
 const DayInMonth = (props) => {
     return (
@@ -12,13 +13,12 @@ const DayInMonth = (props) => {
 }
 
 const Test = (props) => {
-  if (props.day !== 6) {
-    return null;
-  }
   return (
-    <div className="cell-contents">
+    <div>
       <ul>
-        <li>test</li>
+        <li>
+          <Tag className="activity" color="primary">test</Tag>
+        </li>
         <li>t2</li>
       </ul>
     </div>
