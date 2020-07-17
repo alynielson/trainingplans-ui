@@ -1,6 +1,14 @@
 td.cell {
     position: relative;
+    font-size: small;
 }
 td {
     width: 14.2857%;
+}
+ul {
+    list-style: none;
+    display: inline;
+}
+
+.cell-contents {
 }
