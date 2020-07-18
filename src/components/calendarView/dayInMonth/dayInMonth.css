@@ -13,4 +13,9 @@ ul {
 .tag.activity {
     display: list-item;
     height: 1.5em;
+    margin-right: 3px;
+}
+
+.spacer {
+    background-color: white;
 }

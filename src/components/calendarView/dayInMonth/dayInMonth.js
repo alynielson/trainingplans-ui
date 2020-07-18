@@ -19,7 +19,27 @@ const Test = (props) => {
         <li>
           <Tag className="activity" color="primary">test</Tag>
         </li>
-        <li>t2</li>
+        <li>
+        <Tag className="activity" color="warning">test 2</Tag>
+        </li>
+        <li>
+          <Tag className="activity" color="primary">test</Tag>
+        </li>
+        <li>
+        <Tag className="activity spacer"></Tag>
+        </li>
+        <li>
+          <Tag className="activity" color="primary">test</Tag>
+        </li>
+        <li>
+        <Tag className="activity" color="warning">test 2</Tag>
+        </li>
+        <li>
+          <Tag className="activity" color="primary">test</Tag>
+        </li>
+        <li>
+        <Tag className="activity" color="warning">test 2</Tag>
+        </li>
       </ul>
     </div>
   );
