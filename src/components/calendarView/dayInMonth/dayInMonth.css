@@ -1,6 +1,7 @@
 td.cell {
     position: relative;
     font-size: small;
+    max-width: 0.167vw;
 }
 td {
     width: 14.2857%;
@@ -14,8 +15,9 @@ ul {
     display: list-item;
     height: 1.5em;
     margin-right: 3px;
+    overflow: hidden;
 }
 
-.spacer {
+.tag.activity.spacer {
     background-color: white;
 }

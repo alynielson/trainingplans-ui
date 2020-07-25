@@ -43,7 +43,7 @@ const formatDateString = (value) => value < 10 ? `0${value}` : value;
 const getWorkoutsForDay = (day, month, year, workouts) => {
     const monthFormatted = formatDateString(month + 1);
     const dayFormatted = formatDateString(day);
-    return workouts.filter(x => x.scheduledDate === `${monthFormatted}/${dayFormatted}/${year}`)
+    return workouts.filter(x => x.scheduledDate === `${monthFormatted}/${dayFormatted}/${year}`);
 }
 
 const mapWeekDayOrder = (firstDayOfWeek) => {
