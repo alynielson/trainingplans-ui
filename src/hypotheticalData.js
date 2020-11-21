@@ -5,7 +5,7 @@ export const plannedWorkouts = [
         activityType: "Run",
         workoutType: "Easy",
         timeOfDay: "Morning",
-        scheduledDate: "07/06/2020",
+        scheduledDate: "11/22/2020",
         order: 1,
         plannedRepetitions: [
             {
@@ -43,7 +43,7 @@ export const plannedWorkouts = [
         activityType: "Run",
         workoutType: "Intervals",
         timeOfDay: "Morning",
-        scheduledDate: "07/07/2020",
+        scheduledDate: "11/23/2020",
         order: 1,
         plannedRepetitions: [
             {
@@ -101,7 +101,7 @@ export const plannedWorkouts = [
         activityType: "Run",
         workoutType: "Recovery",
         timeOfDay: "Afternoon",
-        scheduledDate: "07/07/2020",
+        scheduledDate: "11/23/2020",
         order: 1,
         plannedRepetitions: [
             {
