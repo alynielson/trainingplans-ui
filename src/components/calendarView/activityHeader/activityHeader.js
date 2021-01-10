@@ -1,7 +1,8 @@
 import React from 'react';
-import { allActivityTypes, activityColorMap } from '../../../constants';
+import { allActivityTypes, activityColorMap, activityTotalViewOptions } from '../../../constants';
 import Tag from '../../common/tag/tag';
-import TagDropdown from '../../common/dropdown/tagDropdown'
+import Dropdown from '../../common/dropdown/dropdown';
+import TagDropdownChecklist from '../../common/dropdown/tagDropdownChecklist'
 
 const ActivityHeader = (props) => {
     if (props.singleSelectedActivity) {
@@ -29,18 +30,24 @@ const ActivityHeader = (props) => {
         <>
             {firstThreeSelectedTypes.map(type => {
                 return (
-                        <Tag
+                        <Dropdown
                             key={type}
-                            onClick={props.selectSingleActivityDrilldown}
-                            value={type}
-                            color={activityColorMap[type]}
-                            remove={canRemoveSelectedTypes}
-                            onRemove={props.removeActivityType}
+                            useTag={true}
+                            noMargin={true}
+                            clickTag={props.selectSingleActivityDrilldown}
+                            buttonText={type}
+                            mainColor={activityColorMap[type]}
+                            removeTag={canRemoveSelectedTypes}
+                            onRemoveTag={props.removeActivityType}
+                            values={activityTotalViewOptions[type]}
+                            changeSelected={(val) => props.changeTypeTotalView(type, val)}
+                            selectedValue={props.typeTotalViews[type]}
+                            highlightColor={activityColorMap[type]}
                         />
                 );
             })} 
             {moreActivitiesDropdownTypes.length > 0 ? 
-            <TagDropdown
+            <TagDropdownChecklist
                 selectValue={props.addActivityType}
                 deselectValue={props.removeActivityType}
                 values={moreActivitiesDropdownTypes}

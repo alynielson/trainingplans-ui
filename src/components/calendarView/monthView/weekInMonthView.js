@@ -92,7 +92,12 @@ const getWeekTotals = (workouts, typeDefaults, totalDisplay) => {
         uom = uom + " (estimate)";
     }
 
-    return `${total} ${uom}`;
+    let result = total >= 1000 ? Math.round(total).toString() : total.toFixed(1);
+    if (result.endsWith(".0")) {
+        result = result.slice(0, -2);
+    }
+
+    return `${result} ${uom}`;
 }
 
 const estimateTime = (distanceQuantity, distanceUom, typeDefaults) => {

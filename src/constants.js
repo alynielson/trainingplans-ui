@@ -95,3 +95,42 @@ export const workoutCalendarOptionTypes = [
         text: "Comparison"
     }
 ];
+
+export const activityTotalViewOptions = {
+    "Run": [
+        {
+            id: 1,
+            value: "Distance",
+            text: "Distance"
+        },
+        {
+            id: 2,
+            value: "Time",
+            text: "Time"
+        }
+    ],
+    "Bike": [
+        {
+            id: 1,
+            value: "Distance",
+            text: "Distance"
+        },
+        {
+            id: 2,
+            value: "Time",
+            text: "Time"
+        }
+    ],
+    "Swim": [
+        {
+            id: 1,
+            value: "Distance",
+            text: "Distance"
+        },
+        {
+            id: 2,
+            value: "Time",
+            text: "Time"
+        }
+    ]
+};

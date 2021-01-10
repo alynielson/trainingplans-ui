@@ -35,3 +35,20 @@ $button-font-size: 0.8em;
 $button-height: 2.5em;
 
 $corner-font-size: 0.75em;
+
+$colors: (
+    "orange-main-color": $orange-main-color,
+    "purple-main-color": $purple-main-color,
+    "green-main-color": $green-main-color,
+    "red-secondary": $red-secondary,
+    "light-blue-secondary": $light-blue-secondary,
+    "pink-secondary": $pink-secondary,
+    "dark-blue-secondary": $dark-blue-secondary,
+    "green-highlight": $green-highlight,
+    "purple-highlight": $purple-highlight
+);
+
+$highlight-colors: (
+    "--green-highlight": $green-highlight,
+    "--purple-highlight": $purple-highlight
+);

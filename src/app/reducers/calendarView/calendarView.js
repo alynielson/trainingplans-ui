@@ -5,7 +5,8 @@ import {
   ADD_ACTIVITY_TYPE,
   REMOVE_ACTIVITY_TYPE,
   SELECT_MULTI_ACTIVITY,
-  SELECT_SINGLE_ACTIVITY_DRILLDOWN } from "./actionTypes";
+  SELECT_SINGLE_ACTIVITY_DRILLDOWN,
+  CHANGE_TYPE_TOTAL_VIEW } from "./actionTypes";
 import moment from 'moment';
 import { plannedWorkouts } from "hypotheticalData";
 
@@ -95,6 +96,19 @@ export default function(state = initialState, action) {
         options: {
           ...state.options,
           singleSelectedActivity: action.payload
+        }
+      }
+    }
+    case CHANGE_TYPE_TOTAL_VIEW: {
+      let totalDisplay = {
+        ...state.options.totalDisplay
+      }
+      totalDisplay[action.payload.activityType] = action.payload.totalView;
+      return {
+        ...state,
+        options: {
+          ...state.options,
+          totalDisplay
         }
       }
     }

@@ -8,7 +8,8 @@ import { increaseMonthViewing,
     addActivityType,
     removeActivityType,
     selectMultiActivity,
-    selectSingleActivityDrilldown } from 'app/reducers/calendarView/actions';
+    selectSingleActivityDrilldown,
+    changeTypeTotalView } from 'app/reducers/calendarView/actions';
 import './calendarView.css';
 import { selectMonthViewWorkouts } from 'app/selectors';
 
@@ -20,7 +21,8 @@ const CalendarView = ({calendarView,
     addActivityType,
     removeActivityType,
     selectMultiActivity,
-    selectSingleActivityDrilldown}) => {
+    selectSingleActivityDrilldown,
+    changeTypeTotalView}) => {
     return (
         <>
                 <MonthViewHeader
@@ -32,6 +34,7 @@ const CalendarView = ({calendarView,
                     removeActivityType={removeActivityType}
                     selectMultiActivity={selectMultiActivity}
                     selectSingleActivityDrilldown={selectSingleActivityDrilldown}
+                    changeTypeTotalView={changeTypeTotalView}
                     />
                 <MonthView 
                     workouts={workouts}
@@ -51,7 +54,8 @@ const mapStateToProps = (state) => {
         addActivityType,
         removeActivityType,
         selectMultiActivity,
-        selectSingleActivityDrilldown
+        selectSingleActivityDrilldown,
+        changeTypeTotalView
     };
 }
 
@@ -62,5 +66,6 @@ export default connect(mapStateToProps,
         addActivityType,
         removeActivityType,
         selectMultiActivity,
-        selectSingleActivityDrilldown
+        selectSingleActivityDrilldown,
+        changeTypeTotalView
     })(CalendarView);

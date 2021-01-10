@@ -1,21 +1,34 @@
 import React from 'react';
 import './dropdown.scss';
+import Tag from '../tag/tag';
 
 const Dropdown = (props) => {
-    const buttonColorClass=props.color ? `--${props.color}-outside`: "";
-    const colorClass=props.color ? `--${props.color}-highlight` : "";
+    const noMargin = props.noMargin === true ? true : false;
+    const useTag = props.useTag === true ? true : false;
+    const highlightColorClass=props.highlightColor ? `--dropdown-${props.highlightColor}` : "";
+    const buttonColorClass=props.mainColor ? `--${props.mainColor}-outside`: "";
     const buttonClass=`${buttonColorClass} --white-with-border`;
     return (
-        <div className="dropdown-test">
+        <div className={`${noMargin ? "--no-margin " : ""}dropdown-test`}>
+            {useTag ? 
+            <Tag
+                onClick={props.clickTag}
+                value={props.buttonText}
+                color={props.mainColor}
+                remove={props.removeTag}
+                onRemove={props.onRemoveTag}
+            />
+            :
             <button className={buttonClass}>
                 {props.buttonText}
             </button>
-            <div className="dropdown-content-test">
+            }
+            {props.values ? <div className="dropdown-content-test">
                 {props.values.map((t) => {
                     return (
                     <div
                         key={t.id} 
-                        className={props.selectedValue === t.value ? `selected ${colorClass}` : colorClass}
+                        className={props.selectedValue === t.value ? `selected ${highlightColorClass}` : highlightColorClass}
                         value={t.value}
                         onClick={() => props.changeSelected(t.value)}
                     >
@@ -23,7 +36,7 @@ const Dropdown = (props) => {
                     </div>
                     )
                 })}
-            </div>
+            </div> : null}
         </div>
     );
 }

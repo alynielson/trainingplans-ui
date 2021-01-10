@@ -5,18 +5,18 @@ const initialState = {
   typeDefaults: {
     Run: {
       distanceUom: "Miles",
-      timeUom: "Minutes",
-      timePerDistance: 8
+      timeUom: "Hours",
+      timePerDistance: 0.125
     },
     Bike: {
       distanceUom: "Miles",
-      timeUom: "Minutes",
-      timePerDistance: 3.5
+      timeUom: "Hours",
+      timePerDistance: 0.06
     },
     Swim: {
       distanceUom: "Meters",
-      timeUom: "Minutes",
-      timePerDistance: 60
+      timeUom: "Hours",
+      timePerDistance: 0.0002778
     }
   }
 };

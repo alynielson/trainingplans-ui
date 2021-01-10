@@ -34,15 +34,18 @@ const MonthViewHeader = (props) => {
                         selectedValue={viewOptions.workoutCalendar}
                         values={workoutCalendarOptionTypes}
                         changeSelected={props.changeWorkoutCalendarView}
-                        color="green"
+                        mainColor="green-main-color"
+                        highlightColor="green-highlight"
                     />
                     <ActivityHeader 
                         activityTypes={viewOptions.activityTypes}
                         singleSelectedActivity={viewOptions.singleSelectedActivity}
+                        typeTotalViews={viewOptions.totalDisplay}
                         addActivityType={props.addActivityType}
                         removeActivityType={props.removeActivityType}
                         selectSingleActivityDrilldown={props.selectSingleActivityDrilldown}
                         selectMultiActivity={props.selectMultiActivity}
+                        changeTypeTotalView={props.changeTypeTotalView}
                 />
                 </div>
             </div>

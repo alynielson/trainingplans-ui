@@ -14,7 +14,6 @@ const Tag = (props) => {
             { props.remove ?
             <div
                 className={`tag-test remove-test --${props.color}`}
-                color={props.color}
                 onClick={() => props.onRemove(props.value)}>
                 <img src={closeicon} alt="remove"/>
             </div> 

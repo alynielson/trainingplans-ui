@@ -21,7 +21,7 @@
     margin-top: $header-height;
 }
 
-.container-test > div {
+.container-test > div:not(.--no-margin) {
     margin-right: $padding-container-horizontal;
 }
 
@@ -41,7 +41,7 @@
     }
 }
 
-.inner-container-test > div {
+.inner-container-test > div:not(.--no-margin) {
     margin-right: $padding-container-horizontal;
 }
 
@@ -80,28 +80,13 @@ button {
     
 }
 
-$colors: (
-    "--orange-main-color": $orange-main-color,
-    "--purple-main-color": $purple-main-color,
-    "--green-main-color": $green-main-color,
-    "--red-secondary": $red-secondary,
-    "--light-blue-secondary": $light-blue-secondary,
-    "--pink-secondary": $pink-secondary,
-    "--dark-blue-secondary": $dark-blue-secondary
-);
-
-$highlight-colors: (
-    "--green-highlight": $green-highlight,
-    "--purple-highlight": $purple-highlight
-);
-
-.--green-outside {
+.--green-main-color-outside {
     border-color: $green-main-color;
     color: $green-main-color;
 }
 
 @each $name, $color in $colors {
-    .#{$name} {
+    .--#{$name} {
         background-color: $color;
         color: white;
     }

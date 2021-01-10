@@ -31,11 +31,11 @@
 
     > div.selected {
         color: white;
-        &.--green-highlight {
-            background-color: $green-highlight;
-        }
-        &.--purple-highlight {
-            background-color: $purple-highlight;
+
+        @each $name, $color in $colors {
+            &.--dropdown-#{$name} {
+                background-color: $color;
+            }
         }
 
         &:first-child {
@@ -51,11 +51,11 @@
 
     > div:hover:not(.selected) {
         cursor: pointer;
-        &.--green-highlight {
-            color: $green-highlight;
-        }
-        &.--purple-highlight {
-            background-color: $purple-highlight;
+
+        @each $name, $color in $colors {
+            &.--dropdown-#{$name} {
+                color: $color;
+            }
         }
     }
 
