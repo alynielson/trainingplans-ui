@@ -1,55 +1,48 @@
 import React from 'react';
-import './dayInMonth.css';
-import Tag from 'react-bulma-components/lib/components/tag';
+import './dayInMonth.scss';
+import Tag from '../../common/tag/tag';
+import { activityColorMap } from '../../../constants';
 
 const PlannedDay = (props) => {
     const morningWorkouts = getSortedWorkoutsByTimeOfDay("Morning", props.workouts);
-    const lunchWorkouts = getSortedWorkoutsByTimeOfDay("Lunch", props.workouts);
-    const eveningWorkouts = getSortedWorkoutsByTimeOfDay("Evening", props.workouts);
+    const afternoonWorkouts = getSortedWorkoutsByTimeOfDay("Afternoon", props.workouts);
     const anytimeWorkouts = getSortedWorkoutsByTimeOfDay("Any", props.workouts);
+
+    const morningWorkoutDisplay = getWorkoutElements(morningWorkouts);
+    const afternoonWorkoutDisplay = getWorkoutElements(afternoonWorkouts);
+    const anytimeWorkoutDisplay = getWorkoutElements(anytimeWorkouts);
+
     return (
         <div>
           <ul>
-            {morningWorkouts.map(w => {
-                return (
-                    <li>
-                       <Tag className="activity" color="primary">{getWorkoutDisplayName(w)}</Tag> 
-                    </li>
-                );
-            })}
+            { morningWorkoutDisplay && morningWorkoutDisplay.length > 0 ? 
+            <li className="time-label">Morning</li> : null}
+            {morningWorkoutDisplay}
+            
+            { afternoonWorkoutDisplay && afternoonWorkoutDisplay.length > 0 ? 
+            <li className="time-label">Afternoon</li> : null}
+            {afternoonWorkoutDisplay}
 
-            {getSpacer(morningWorkouts, [lunchWorkouts, eveningWorkouts, anytimeWorkouts])}
-
-            {lunchWorkouts.map(w => {
-                return (
-                    <li>
-                       <Tag className="activity" color="primary">{getWorkoutDisplayName(w)}</Tag> 
-                    </li>
-                );
-            })}
-
-            {getSpacer(lunchWorkouts, [eveningWorkouts, anytimeWorkouts])}
-
-            {eveningWorkouts.map(w => {
-                return (
-                    <li>
-                       <Tag className="activity" color="primary">{getWorkoutDisplayName(w)}</Tag> 
-                    </li>
-                );
-            })}
-
-            {getSpacer(eveningWorkouts, [anytimeWorkouts])}
-
-            {anytimeWorkouts.map(w => {
-                return (
-                    <li>
-                       <Tag className="activity" color="primary">{getWorkoutDisplayName(w)}</Tag> 
-                    </li>
-                );
-            })}
+            { anytimeWorkoutDisplay && anytimeWorkoutDisplay.length > 0 ? 
+            <li className="time-label">Any</li> : null}
+            {anytimeWorkoutDisplay}
           </ul>
         </div>
       );
+}
+
+const getWorkoutElements = (workouts) => {
+    return workouts.map(w => {
+        return (
+            <li key={w.id}>
+               <Tag 
+               customClass="tag-activity"
+               color={activityColorMap[w.activityType]}
+               value={getWorkoutDisplayName(w)}
+               remove={false}></Tag> 
+            </li>
+        );
+    })
 }
 
 const getSortedWorkoutsByTimeOfDay = (timeOfDay, workouts) => {
@@ -63,14 +56,6 @@ const getWorkoutDisplayName = (workout) => {
         workout.workoutSummary.totalDistanceQuantity + " " + workout.workoutSummary.totalDistanceUom
         : workout.workoutSummary.totalTimeQuantity + " " + workout.workoutSummary.totalTimeUom;
     return `${workout.name}: ${amount}`;
-}
-
-const getSpacer = (earliestGroup, laterGroups) => {
-    return earliestGroup.length > 0 && laterGroups.some(x => x.length > 0) ? 
-    <li>
-        <Tag className="activity spacer"></Tag>
-    </li>
-    : null;
 }
 
 export default PlannedDay;

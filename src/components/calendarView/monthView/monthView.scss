@@ -1,0 +1,23 @@
+@import "../../../variables";
+
+table {
+    width: 100%;
+}
+
+th {
+    font-weight: unset;
+}
+
+td {
+   width: 12.5%; 
+}
+
+ul {
+    min-height: 60px;
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+td:last-child {
+    padding-top: calc(#{$corner-font-size} + 2px);
+}

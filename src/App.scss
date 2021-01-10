@@ -1,0 +1,121 @@
+@use "sass:color";
+@import "variables";
+
+.header {
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    right: 0;
+    left: 0;
+    height:$header-height;
+    border-bottom: 1px solid $grey-border-color;
+    z-index: 100;
+
+    .container-test {
+        height: $header-height - $padding-header-vertical - $padding-header-vertical;
+    }
+}
+
+.header + div {
+    margin-top: $header-height;
+}
+
+.container-test > div {
+    margin-right: $padding-container-horizontal;
+}
+
+.container-test > div:not(.dropdown-test) {
+    display: flex;
+}
+
+.container-test {
+    padding: $padding-container-vertical $padding-container-horizontal;
+    display: flex;
+}
+
+.inner-container-test {
+    display: flex;
+    &.--quarter {
+        flex-basis: 25%;
+    }
+}
+
+.inner-container-test > div {
+    margin-right: $padding-container-horizontal;
+}
+
+.inner-container-test > div:not(.dropdown-test) {
+    display: flex;
+}
+
+body {
+    background-color: #FFFFFF;
+    height: 2000px;
+}
+
+button {
+    font-family: inherit;
+    font-size: $button-font-size;
+    border-radius: $default-radius;
+    background-color: $default-grey;
+    padding: $padding-button-vertical $padding-button-horizontal;
+    font-weight: 600;
+    border: none;
+    height: $button-height;
+    line-height: $button-font-size;
+
+    &.--white-with-border {
+        background-color: #FFFFFF;
+        border: 2px solid;
+    }
+
+    &.arrow {
+        background: none;
+    }
+
+    &.arrow:hover {
+        box-shadow: $default-box-shadow;
+    }
+    
+}
+
+$colors: (
+    "--orange-main-color": $orange-main-color,
+    "--purple-main-color": $purple-main-color,
+    "--green-main-color": $green-main-color,
+    "--red-secondary": $red-secondary,
+    "--light-blue-secondary": $light-blue-secondary,
+    "--pink-secondary": $pink-secondary,
+    "--dark-blue-secondary": $dark-blue-secondary
+);
+
+$highlight-colors: (
+    "--green-highlight": $green-highlight,
+    "--purple-highlight": $purple-highlight
+);
+
+.--green-outside {
+    border-color: $green-main-color;
+    color: $green-main-color;
+}
+
+@each $name, $color in $colors {
+    .#{$name} {
+        background-color: $color;
+        color: white;
+    }
+
+    div:hover.#{$name} {
+        background-color: #{lighten($color, 15%)};
+        cursor: default;
+    }
+
+    a:hover.#{$name} {
+        background-color: #{lighten($color, 15%)};
+        cursor: default;
+    }
+}
+
+
+

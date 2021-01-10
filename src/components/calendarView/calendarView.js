@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import MonthView from "./monthView/monthView";
 import MonthViewHeader from './monthViewHeader/monthViewHeader'
-import Container from 'react-bulma-components/lib/components/container';
 import { increaseMonthViewing, 
     decreaseMonthViewing, 
     changeWorkoutCalendarView, 
@@ -23,8 +22,7 @@ const CalendarView = ({calendarView,
     selectMultiActivity,
     selectSingleActivityDrilldown}) => {
     return (
-        <div>
-            <Container fluid>
+        <>
                 <MonthViewHeader
                     calendarView={calendarView}
                     incrementMonth={increaseMonthViewing}
@@ -39,8 +37,7 @@ const CalendarView = ({calendarView,
                     workouts={workouts}
                     calendarView={calendarView}
                     />
-            </Container>
-        </div>
+        </>
     );
 }
 
