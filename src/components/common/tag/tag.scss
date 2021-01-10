@@ -1,0 +1,53 @@
+@use "../../../App.scss";
+@import "../../../variables";
+
+.tag-test {
+    border-radius: $default-radius;
+    padding-top: $padding-button-vertical;
+    padding-bottom: $padding-button-vertical;
+    font-size: $tag-font-size;
+    background-color: $default-grey;
+    height: $tag-height;
+    line-height: $tag-height;
+    margin-top: $padding-button-vertical;
+
+    &.tag-activity {
+        height: initial;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        width: 100%;
+    }
+    
+    &.tag-activity:not(:first-of-type) {
+        margin-top: 2px;
+    }
+}
+
+.tag-group-test {
+    margin-right: $padding-container-horizontal / 2;
+    display: flex;
+
+    .tag-test:not(:last-child):not(:only-child):not(.tag-activity) {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        padding-right: 6px;
+    }
+
+    .tag-test:not(:first-child) {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .tag-activity {
+        padding-left: 2px;
+        padding-right: 1px;
+    }
+
+    .tag-test:not(.remove-test):not(.tag-activity) {
+        padding-left: $padding-button-horizontal;
+        padding-right: $padding-button-horizontal;
+    }
+
+    
+}
+

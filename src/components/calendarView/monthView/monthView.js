@@ -1,17 +1,16 @@
 import React from 'react';
-import Table from 'react-bulma-components/lib/components/table';
 import { connect } from "react-redux";
 import { getUserDefaultsState } from 'app/selectors';
 import { weekDays } from '../../../constants';
-import DayInMonth from '../dayInMonth/dayInMonth';
-import '../calendarView.css'
+import './monthView.scss'
+import WeekView from './weekInMonthView';
 
 const MonthView = (props) => {
   const month = props.calendarView.month;
   const year = props.calendarView.year;
   return (
-    <div>
-        <Table>
+    <div className="container-test">
+        <table>
             <thead>
                 <tr>
                     {mapWeekDayOrder(props.firstDayOfWeek)}
@@ -19,31 +18,18 @@ const MonthView = (props) => {
             </thead>
             <tbody>
                 {getMonthLayout(month, year, props.firstDayOfWeek).map((week, weekIndex) => {
-                    return (
-                        <tr className="week" key={weekIndex}>
-                            {week.map((day, dayIndex) => {
-                                return (<DayInMonth 
-                                    day={day} 
-                                    key={dayIndex} 
-                                    workouts={day === 0 
-                                        ? null : getWorkoutsForDay(day, month, year, props.workouts)}
-                                    />);
-                            })}
-                        </tr>
-                    );
+                    return (<WeekView key={weekIndex}
+                        weekDays={week}
+                        month={month}
+                        year={year}
+                        workouts={props.workouts}
+                        totalDisplay={props.calendarView.options.totalDisplay}
+                    />);
                 })}
             </tbody>
-        </Table>
+        </table>
     </div>
   );
-}
-
-const formatDateString = (value) => value < 10 ? `0${value}` : value;
-
-const getWorkoutsForDay = (day, month, year, workouts) => {
-    const monthFormatted = formatDateString(month + 1);
-    const dayFormatted = formatDateString(day);
-    return workouts.filter(x => x.scheduledDate === `${monthFormatted}/${dayFormatted}/${year}`);
 }
 
 const mapWeekDayOrder = (firstDayOfWeek) => {

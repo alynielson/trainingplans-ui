@@ -1,0 +1,72 @@
+@use "../../../App.scss";
+@import "../../../variables";
+
+.dropdown-test {
+    position: relative;
+    display: inline-block;
+
+    &:hover > .dropdown-content-test {
+        display: block;
+    }
+}
+
+.dropdown-content-test {
+    display: none;
+    position: absolute;
+    border-radius: 4px;
+    box-shadow: $default-box-shadow;
+    z-index: 10;
+    border: solid 1px $grey-border-color;
+    font-size: 0.8em;
+    background-color: white;
+
+    & div {
+        display: block;
+        padding: $padding-container-vertical $padding-container-horizontal;
+    }
+
+    &.dropdown-test:hover {
+        display: block;
+    }
+
+    > div.selected {
+        color: white;
+        &.--green-highlight {
+            background-color: $green-highlight;
+        }
+        &.--purple-highlight {
+            background-color: $purple-highlight;
+        }
+
+        &:first-child {
+            border-top-left-radius: $default-radius;
+            border-top-right-radius: $default-radius;
+        }
+
+        &:last-child {
+            border-bottom-left-radius: $default-radius;
+            border-bottom-right-radius: $default-radius;
+        }
+    }
+
+    > div:hover:not(.selected) {
+        cursor: pointer;
+        &.--green-highlight {
+            color: $green-highlight;
+        }
+        &.--purple-highlight {
+            background-color: $purple-highlight;
+        }
+    }
+
+    & .dropdown-checkbox-container-test {
+        display: flex;
+        padding-left: $padding-container-horizontal;
+        padding-right: $padding-container-horizontal;
+        padding-top: $padding-container-vertical;
+    }
+
+    & .dropdown-checkbox-container-test:last-of-type {
+        padding-bottom: $padding-container-vertical;
+    }
+}

@@ -1,61 +1,51 @@
 import React from 'react';
-import Icon from 'react-bulma-components/lib/components/icon';
-import 'react-bulma-components/lib/components/heading';
-import Button from 'react-bulma-components/lib/components/button';
-import arrowleftthick from  '../../../icons/arrow-left-thick.png';
-import arrowrightthick from '../../../icons/arrow-right-thick.png';
+import arrowleftthick from  '../../../icons/arrow_back-black-18dp.svg';
+import arrowrightthick from '../../../icons/arrow_forward-black-18dp.svg';
+
 import { months, workoutCalendarOptionTypes } from '../../../constants';
-import './monthViewHeader.css';
-import Dropdown from 'react-bulma-components/lib/components/dropdown';
-import ActivityHeader from '../activityDropdown/activityDropdown';
+import './monthViewHeader.scss';
+import ActivityHeader from '../activityHeader/activityHeader';
+import Dropdown from '../../common/dropdown/dropdown';
 
 const MonthViewHeader = (props) => {
     const month = props.calendarView.month;
     const year = props.calendarView.year;
     const viewOptions = props.calendarView.options;
+    
     return (
-        <div className="title" id="monthViewHeader">
-            <div className="header">
-                <Button color="white" onClick={props.decrementMonth}>
-                    <Icon>
+            <div className="container-test">
+                <div className="inner-container-test --quarter">
+                    <div className="month-selector">
+                    <button className="arrow" onClick={props.decrementMonth}>
                         <img src={arrowleftthick} alt="left arrow" />
-                    </Icon>
-                </Button>
-                <div className="monthName">
-                    {months[month]}
+                    </button>
+                    <div className="month-name">
+                        {months[month]}
+                    </div>
+                    <button className="arrow" onClick={props.incrementMonth}>
+                        <img src={arrowrightthick} alt="right arrow"/>
+                    </button>
+                    <div className="year-name">{year}</div>
+                    </div>
                 </div>
-                <Button color="white" onClick={props.incrementMonth}>
-                <Icon>
-                    <img src={arrowrightthick} alt="right arrow"/>
-                </Icon>
-                </Button>
-                {year}
-            </div>
-            <div className="headerOptions">
-                <Dropdown hoverable 
-                    value={viewOptions.workoutCalendar}
-                    onChange={props.changeWorkoutCalendarView}>
-                    {workoutCalendarOptionTypes.map((t) => {
-                        return (
-                        <Dropdown.Item 
-                            key={t.id} 
-                            value={t.value}
-                        >
-                            {t.text}
-                        </Dropdown.Item>
-                        )
-                    })}
-                </Dropdown>
-                <ActivityHeader 
-                    activityTypes={viewOptions.activityTypes}
-                    singleSelectedActivity={viewOptions.singleSelectedActivity}
-                    addActivityType={props.addActivityType}
-                    removeActivityType={props.removeActivityType}
-                    selectSingleActivityDrilldown={props.selectSingleActivityDrilldown}
-                    selectMultiActivity={props.selectMultiActivity}
+                <div className="inner-container-test">
+                    <Dropdown 
+                        buttonText={workoutCalendarOptionTypes.find(x => x.value === viewOptions.workoutCalendar).text}
+                        selectedValue={viewOptions.workoutCalendar}
+                        values={workoutCalendarOptionTypes}
+                        changeSelected={props.changeWorkoutCalendarView}
+                        color="green"
                     />
+                    <ActivityHeader 
+                        activityTypes={viewOptions.activityTypes}
+                        singleSelectedActivity={viewOptions.singleSelectedActivity}
+                        addActivityType={props.addActivityType}
+                        removeActivityType={props.removeActivityType}
+                        selectSingleActivityDrilldown={props.selectSingleActivityDrilldown}
+                        selectMultiActivity={props.selectMultiActivity}
+                />
+                </div>
             </div>
-        </div>
     );
 }
 

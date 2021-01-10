@@ -11,6 +11,8 @@ export const selectMonthViewWorkouts = (store) => {
             return [];
         case "comparison":
             return [];
+        default:
+            break;
     }
     return [];
 }

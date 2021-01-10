@@ -1,0 +1,17 @@
+@use "../../../App.scss";
+@import "../../../variables";
+
+td .corner {
+    font-size: $corner-font-size;
+    float: right;
+}
+
+.time-label {
+    font-size: 0.7em;
+    border-bottom: 1px dashed $purple-highlight;
+    color: $purple-highlight;
+}
+
+td {
+    vertical-align: top;
+}
