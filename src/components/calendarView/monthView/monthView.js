@@ -33,17 +33,10 @@ const mapWeekDayOrder = (firstDayOfWeek) => {
         return weekDays.map((day, index) => (<th key={index}>{day}</th>));
     }
     // if desired first day is not 0 (Sunday), need to move days over
-    var shiftedWeekDays = [];
-    for (var i = 0; i < 7; i++) {
-        shiftedWeekDays.push(weekDays[getDayAtShiftedIndex(i, firstDayOfWeek)]);
-    }
-    return shiftedWeekDays.map((day, index) => (<th key={index}>{day}</th>));
-}
+    let startOfWeek = weekDays.slice(firstDayOfWeek);
+    let endOfWeek = weekDays.slice(0, firstDayOfWeek);
 
-const getDayAtShiftedIndex = (index, desiredFirstDayOfWeek) => {
-    return (index < 7 - desiredFirstDayOfWeek)
-        ? index + desiredFirstDayOfWeek
-        : index - (7 - desiredFirstDayOfWeek);
+    return startOfWeek.concat(endOfWeek).map((day, index) => (<th key={index}>{day}</th>));
 }
 
 const getIndexAtShiftedDay = (day, desiredFirstDayOfWeek) => {
@@ -61,9 +54,8 @@ const mapStateToProps = (state) => {
     };
 }
 
-const getTotalDaysInMonth = (month, year) => {
-    return new Date(year, month + 1, 0).getDate();
-}
+// The below looks weird. First function only works if you add 1 to month, but not the second method.
+const getTotalDaysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
 const getFirstDayOfMonth = (month, year) => new Date(year, month, 1).getDay();
 
 const getMonthLayout = (month, year, desiredFirstDayOfWeek) => {
