@@ -1,8 +1,18 @@
 import React from 'react';
-import { allActivityTypes, activityColorMap, activityTotalViewOptions } from '../../../constants';
+import { activityColorMap, activityTotalViewOptions } from '../../../constants';
 import Tag from '../../common/tag/tag';
 import Dropdown from '../../common/dropdown/dropdown';
+import { connect } from 'react-redux';
+import { 
+    addActivityType,
+    removeActivityType,
+    selectMultiActivity,
+    selectSingleActivityDrilldown,
+    changeTypeTotalView } from 'app/reducers/calendarView/actions';
 import TagDropdownChecklist from '../../common/dropdown/tagDropdownChecklist'
+import { getActivitiesInHeaderDropdown, getMainActivitiesInHeader } from 'app/selectors';
+
+const maxTags = 3;
 
 const ActivityHeader = (props) => {
     if (props.singleSelectedActivity) {
@@ -15,20 +25,11 @@ const ActivityHeader = (props) => {
         );
     }
 
-    const maxTags = 3;
-    const firstThreeSelectedTypes = props.activityTypes.slice(0, maxTags);
-    const canRemoveSelectedTypes = firstThreeSelectedTypes.length > 1;
-    const moreActivitiesDropdownTypes = allActivityTypes.filter(t => !firstThreeSelectedTypes.includes(t))
-        .map(x => {
-            return {
-                selected: props.activityTypes.includes(x), 
-                value: x,
-                id: x
-            }});
+    const canRemoveSelectedTypes = props.firstThreeSelectedTypes.length > 1;
 
     return (
         <>
-            {firstThreeSelectedTypes.map(type => {
+            {props.firstThreeSelectedTypes.map(type => {
                 return (
                         <Dropdown
                             key={type}
@@ -46,11 +47,11 @@ const ActivityHeader = (props) => {
                         />
                 );
             })} 
-            {moreActivitiesDropdownTypes.length > 0 ? 
+            {props.moreActivitiesDropdownTypes.length > 0 ? 
             <TagDropdownChecklist
                 selectValue={props.addActivityType}
                 deselectValue={props.removeActivityType}
-                values={moreActivitiesDropdownTypes}
+                values={props.moreActivitiesDropdownTypes}
                 tagText="More"
                 tagColor="default-grey"
                 remove={false}
@@ -59,4 +60,27 @@ const ActivityHeader = (props) => {
     );
 }
 
-export default ActivityHeader;
+const mapStateToProps = (state) => {
+    const viewOptions = state.calendarView.options;
+    const singleSelectedActivity = viewOptions.singleSelectedActivity;
+    const typeTotalViews = viewOptions.totalDisplay;
+    const firstThreeSelectedTypes = getMainActivitiesInHeader(viewOptions, maxTags);
+    const moreActivitiesDropdownTypes = getActivitiesInHeaderDropdown(viewOptions, firstThreeSelectedTypes);
+    return {
+        firstThreeSelectedTypes,
+        singleSelectedActivity,
+        typeTotalViews,
+        moreActivitiesDropdownTypes,
+        addActivityType,
+        removeActivityType,
+        selectMultiActivity,
+        selectSingleActivityDrilldown,
+        changeTypeTotalView
+    };
+}
+
+export default connect(mapStateToProps, { addActivityType,
+    removeActivityType,
+    selectMultiActivity,
+    selectSingleActivityDrilldown,
+    changeTypeTotalView })(ActivityHeader);

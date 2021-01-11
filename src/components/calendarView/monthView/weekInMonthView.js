@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { getUserDefaultsState } from 'app/selectors';
+import { getUserDefaultsState, selectMonthViewWorkouts } from 'app/selectors';
 import { activityColorMap, uomConversions } from '../../../constants';
 import DayInMonth from '../dayInMonth/dayInMonth';
 import './monthView.scss'
@@ -126,8 +126,13 @@ const getWorkoutsForDay = (day, month, year, workouts) => {
 
 const mapStateToProps = (state) => {
     const userDefaults = getUserDefaultsState(state); 
+    const calendarView = state.calendarView;
     return { 
-        typeDefaults: userDefaults.typeDefaults        
+        typeDefaults: userDefaults.typeDefaults,
+        month: calendarView.month,
+        year: calendarView.year,
+        workouts: selectMonthViewWorkouts(state),
+        totalDisplay: calendarView.options.totalDisplay       
     };
 }
 

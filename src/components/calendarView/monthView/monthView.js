@@ -6,8 +6,7 @@ import './monthView.scss'
 import WeekView from './weekInMonthView';
 
 const MonthView = (props) => {
-  const month = props.calendarView.month;
-  const year = props.calendarView.year;
+
   return (
     <div className="container-test">
         <table>
@@ -17,13 +16,10 @@ const MonthView = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {getMonthLayout(month, year, props.firstDayOfWeek).map((week, weekIndex) => {
-                    return (<WeekView key={weekIndex}
+                {getMonthLayout(props.month, props.year, props.firstDayOfWeek).map((week, weekIndex) => {
+                    return (<WeekView 
+                        key={weekIndex}
                         weekDays={week}
-                        month={month}
-                        year={year}
-                        workouts={props.workouts}
-                        totalDisplay={props.calendarView.options.totalDisplay}
                     />);
                 })}
             </tbody>
@@ -59,11 +55,15 @@ const getIndexAtShiftedDay = (day, desiredFirstDayOfWeek) => {
 const mapStateToProps = (state) => {
     const userDefaults = getUserDefaultsState(state); 
     return { 
-        firstDayOfWeek: userDefaults.firstDayOfWeek
+        firstDayOfWeek: userDefaults.firstDayOfWeek,
+        month: state.calendarView.month,
+        year: state.calendarView.year
     };
 }
 
-const getTotalDaysInMonth = (month, year) => new Date(year, month, 0).getDate();
+const getTotalDaysInMonth = (month, year) => {
+    return new Date(year, month + 1, 0).getDate();
+}
 const getFirstDayOfMonth = (month, year) => new Date(year, month, 1).getDay();
 
 const getMonthLayout = (month, year, desiredFirstDayOfWeek) => {

@@ -1,3 +1,4 @@
+import { allActivityTypes } from '../constants';
 
 export const getUserDefaultsState = store => store.userDefaults;
 
@@ -15,6 +16,21 @@ export const selectMonthViewWorkouts = (store) => {
             break;
     }
     return [];
+}
+
+export const getMainActivitiesInHeader = (options, maxTags) => {
+    return options.activityTypes.slice(0, maxTags);
+}
+
+export const getActivitiesInHeaderDropdown = (options, mainActivities) => {
+    return allActivityTypes.filter(t => !mainActivities.includes(t))
+        .map(x => {
+            return {
+                selected: options.activityTypes.includes(x),
+                value: x,
+                id: x
+            }
+        });
 }
 
 const getFilteredCalendarViewActivities = options => {
