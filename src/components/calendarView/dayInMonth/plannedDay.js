@@ -1,5 +1,6 @@
 import React from 'react';
 import './dayInMonth.scss';
+import { connect } from 'react-redux'
 import Tag from '../../common/tag/tag';
 import { activityColorMap } from '../../../constants';
 
@@ -8,9 +9,9 @@ const PlannedDay = (props) => {
     const afternoonWorkouts = getSortedWorkoutsByTimeOfDay("Afternoon", props.workouts);
     const anytimeWorkouts = getSortedWorkoutsByTimeOfDay("Any", props.workouts);
 
-    const morningWorkoutDisplay = getWorkoutElements(morningWorkouts);
-    const afternoonWorkoutDisplay = getWorkoutElements(afternoonWorkouts);
-    const anytimeWorkoutDisplay = getWorkoutElements(anytimeWorkouts);
+    const morningWorkoutDisplay = getWorkoutElements(morningWorkouts, props.activityAmountDisplay);
+    const afternoonWorkoutDisplay = getWorkoutElements(afternoonWorkouts, props.activityAmountDisplay);
+    const anytimeWorkoutDisplay = getWorkoutElements(anytimeWorkouts, props.activityAmountDisplay);
 
     return (
         <div>
@@ -31,14 +32,14 @@ const PlannedDay = (props) => {
       );
 }
 
-const getWorkoutElements = (workouts) => {
+const getWorkoutElements = (workouts, activityAmountDisplay) => {
     return workouts.map(w => {
         return (
             <li key={w.id}>
                <Tag 
                customClass="tag-activity"
                color={activityColorMap[w.activityType]}
-               value={getWorkoutDisplayName(w)}
+               value={getWorkoutDisplayName(w, activityAmountDisplay[w.activityType])}
                remove={false}></Tag> 
             </li>
         );
@@ -51,11 +52,32 @@ const getSortedWorkoutsByTimeOfDay = (timeOfDay, workouts) => {
         : workouts.filter(x => x.timeOfDay === timeOfDay).sort((a, b) => a.order - b.order);
 }
 
-const getWorkoutDisplayName = (workout) => {
-    let amount = workout.workoutSummary.totalDistanceQuantity > 0 ? 
-        workout.workoutSummary.totalDistanceQuantity + " " + workout.workoutSummary.totalDistanceUom
-        : workout.workoutSummary.totalTimeQuantity + " " + workout.workoutSummary.totalTimeUom;
-    return `${workout.name}: ${amount}`;
+const getWorkoutDisplayName = (workout, activityAmountDisplay) => {
+    let qtyUom;
+
+    switch (activityAmountDisplay) {
+        case "Distance":
+            qtyUom = workout.workoutSummary.totalDistanceQuantity 
+              ? `${workout.workoutSummary.totalDistanceQuantity} ${workout.workoutSummary.totalDistanceUom}` 
+              : `${workout.workoutSummary.totalTimeQuantity} ${workout.workoutSummary.totalTimeUom}`; 
+            break;
+        case "Time":
+            qtyUom = workout.workoutSummary.totalTimeQuantity 
+              ? `${workout.workoutSummary.totalTimeQuantity} ${workout.workoutSummary.totalTimeUom}` 
+              : `${workout.workoutSummary.totalDistanceQuantity} ${workout.workoutSummary.totalDistanceUom}`;
+            break;
+        default:
+            qtyUom = "--"
+            break;
+    }
+
+    return `${workout.name}: ${qtyUom}`;
 }
 
-export default PlannedDay;
+const mapStateToProps = (state) => {
+    return {
+        activityAmountDisplay: state.calendarView.options.totalDisplay
+    }
+}
+
+export default connect(mapStateToProps)(PlannedDay);
